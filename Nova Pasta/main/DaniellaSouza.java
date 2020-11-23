@@ -16,6 +16,7 @@ public class DaniellaSouza {
         System.out.println("Daniella Souza");
         System.out.println("Dérick Rangel");
         System.out.println("Rodrigo Brionis");
+        System.out.println("Nathan Pinaffi");
     }
     
 }
