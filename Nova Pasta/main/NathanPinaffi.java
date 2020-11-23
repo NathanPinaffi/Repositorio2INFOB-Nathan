@@ -13,6 +13,7 @@ public class NathanPinaffi {
     public static void main(String[] args) {
         System.out.println("Nathan Pinaffi");
         System.out.println("Dérick Rangel");
+        System.out.println("Rodrigo Brionis");
     }
     
 }
