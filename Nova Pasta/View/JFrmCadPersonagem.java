@@ -9,7 +9,6 @@ package View;
 import java.awt.EventQueue;
 import java.beans.Beans;
 import java.util.ArrayList;
-
 import java.util.List;
 import javax.persistence.RollbackException;
 import javax.swing.JFrame;
@@ -38,9 +37,14 @@ public class JFrmCadPersonagem extends JPanel {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("personagemrpg?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
+        entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("trabalhoLPGitPU").createEntityManager();
         query = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT p FROM Personagem p");
         list = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(query.getResultList());
+        queryElemento = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("select a from Elemento a");
+        listElemento = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(queryElemento.getResultList());
+        trabalhoLPGitPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("trabalhoLPGitPU").createEntityManager();
+        armaQuery = java.beans.Beans.isDesignTime() ? null : trabalhoLPGitPUEntityManager.createQuery("SELECT a FROM Arma a");
+        armaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : armaQuery.getResultList();
         masterScrollPane = new javax.swing.JScrollPane();
         masterTable = new javax.swing.JTable();
         idPersonagemLabel = new javax.swing.JLabel();
@@ -51,12 +55,12 @@ public class JFrmCadPersonagem extends JPanel {
         idPersonagemField = new javax.swing.JTextField();
         nomePersonagemField = new javax.swing.JTextField();
         lvlPersonagemField = new javax.swing.JTextField();
-        elementoidElementoField = new javax.swing.JTextField();
-        armaidArmaField = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
         refreshButton = new javax.swing.JButton();
         newButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
 
         FormListener formListener = new FormListener();
 
@@ -70,14 +74,14 @@ public class JFrmCadPersonagem extends JPanel {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${lvlPersonagem}"));
         columnBinding.setColumnName("Lvl Personagem");
         columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${elementoidElemento}"));
-        columnBinding.setColumnName("Elementoid Elemento");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${armaidArma}"));
-        columnBinding.setColumnName("Armaid Arma");
-        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${elemento}"));
+        columnBinding.setColumnName("Elemento");
+        columnBinding.setColumnClass(View.Elemento.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${arma}"));
+        columnBinding.setColumnName("Arma");
+        columnBinding.setColumnClass(View.Arma.class);
         bindingGroup.addBinding(jTableBinding);
-
+        jTableBinding.bind();
         masterScrollPane.setViewportView(masterTable);
 
         idPersonagemLabel.setText("Id Personagem:");
@@ -86,9 +90,9 @@ public class JFrmCadPersonagem extends JPanel {
 
         lvlPersonagemLabel.setText("Lvl Personagem:");
 
-        elementoidElementoLabel.setText("Elementoid Elemento:");
+        elementoidElementoLabel.setText("Elemento:");
 
-        armaidArmaLabel.setText("Armaid Arma:");
+        armaidArmaLabel.setText("Arma:");
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.idPersonagem}"), idPersonagemField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
@@ -108,18 +112,6 @@ public class JFrmCadPersonagem extends JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), lvlPersonagemField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.elementoidElemento}"), elementoidElementoField, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        binding.setSourceUnreadableValue("null");
-        bindingGroup.addBinding(binding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), elementoidElementoField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.armaidArma}"), armaidArmaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        binding.setSourceUnreadableValue("null");
-        bindingGroup.addBinding(binding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), armaidArmaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
-        bindingGroup.addBinding(binding);
-
         saveButton.setText("Save");
         saveButton.addActionListener(formListener);
 
@@ -136,38 +128,52 @@ public class JFrmCadPersonagem extends JPanel {
 
         deleteButton.addActionListener(formListener);
 
+        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, listElemento, jComboBox1);
+        bindingGroup.addBinding(jComboBoxBinding);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.elemento}"), jComboBox1, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        bindingGroup.addBinding(binding);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), jComboBox1, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
+        jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, armaList, jComboBox2);
+        bindingGroup.addBinding(jComboBoxBinding);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.arma}"), jComboBox2, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        bindingGroup.addBinding(binding);
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), jComboBox2, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
+        bindingGroup.addBinding(binding);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(newButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deleteButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(refreshButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(saveButton)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idPersonagemLabel)
-                    .addComponent(nomePersonagemLabel)
-                    .addComponent(lvlPersonagemLabel)
-                    .addComponent(elementoidElementoLabel)
-                    .addComponent(armaidArmaLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idPersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addComponent(nomePersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addComponent(lvlPersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addComponent(elementoidElementoField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                    .addComponent(armaidArmaField, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(newButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(refreshButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idPersonagemLabel)
+                                    .addComponent(nomePersonagemLabel)
+                                    .addComponent(lvlPersonagemLabel)
+                                    .addComponent(elementoidElementoLabel)
+                                    .addComponent(armaidArmaLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idPersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                                    .addComponent(nomePersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                                    .addComponent(lvlPersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
@@ -193,11 +199,11 @@ public class JFrmCadPersonagem extends JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(elementoidElementoLabel)
-                    .addComponent(elementoidElementoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(armaidArmaLabel)
-                    .addComponent(armaidArmaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
@@ -282,15 +288,18 @@ public class JFrmCadPersonagem extends JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField armaidArmaField;
+    private java.util.List<View.Arma> armaList;
+    private javax.persistence.Query armaQuery;
     private javax.swing.JLabel armaidArmaLabel;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JTextField elementoidElementoField;
     private javax.swing.JLabel elementoidElementoLabel;
     private javax.persistence.EntityManager entityManager;
     private javax.swing.JTextField idPersonagemField;
     private javax.swing.JLabel idPersonagemLabel;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private java.util.List<View.Personagem> list;
+    private java.util.List<Elemento> listElemento;
     private javax.swing.JTextField lvlPersonagemField;
     private javax.swing.JLabel lvlPersonagemLabel;
     private javax.swing.JScrollPane masterScrollPane;
@@ -299,8 +308,10 @@ public class JFrmCadPersonagem extends JPanel {
     private javax.swing.JTextField nomePersonagemField;
     private javax.swing.JLabel nomePersonagemLabel;
     private javax.persistence.Query query;
+    private javax.persistence.Query queryElemento;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton saveButton;
+    private javax.persistence.EntityManager trabalhoLPGitPUEntityManager;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
     public static void main(String[] args) {

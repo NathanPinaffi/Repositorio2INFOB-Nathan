@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -26,17 +27,12 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "personagem", catalog = "personagemrpg", schema = "")
-@NamedQueries({
-    @NamedQuery(name = "Personagem.findAll", query = "SELECT p FROM Personagem p"),
-    @NamedQuery(name = "Personagem.findByIdPersonagem", query = "SELECT p FROM Personagem p WHERE p.idPersonagem = :idPersonagem"),
-    @NamedQuery(name = "Personagem.findByNomePersonagem", query = "SELECT p FROM Personagem p WHERE p.nomePersonagem = :nomePersonagem"),
-    @NamedQuery(name = "Personagem.findByLvlPersonagem", query = "SELECT p FROM Personagem p WHERE p.lvlPersonagem = :lvlPersonagem"),
-    @NamedQuery(name = "Personagem.findByElementoidElemento", query = "SELECT p FROM Personagem p WHERE p.elementoidElemento = :elementoidElemento"),
-    @NamedQuery(name = "Personagem.findByArmaidArma", query = "SELECT p FROM Personagem p WHERE p.armaidArma = :armaidArma")})
+
 public class Personagem implements Serializable {
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -46,10 +42,17 @@ public class Personagem implements Serializable {
     private String nomePersonagem;
     @Column(name = "lvlPersonagem")
     private Integer lvlPersonagem;
-    @Column(name = "Elemento_idElemento")
-    private Integer elementoidElemento;
-    @Column(name = "Arma_idArma")
-    private Integer armaidArma;
+    @ManyToOne
+    private Arma arma;
+    @ManyToOne
+    private Elemento elemento;
+
+    public Personagem(Integer idPersonagem, String nomePersonagem, Integer lvlPersonagem, Arma arma) {
+        this.idPersonagem = idPersonagem;
+        this.nomePersonagem = nomePersonagem;
+        this.lvlPersonagem = lvlPersonagem;
+        this.arma = arma;
+    }
 
     public Personagem() {
     }
@@ -88,25 +91,27 @@ public class Personagem implements Serializable {
         changeSupport.firePropertyChange("lvlPersonagem", oldLvlPersonagem, lvlPersonagem);
     }
 
-    public Integer getElementoidElemento() {
-        return elementoidElemento;
+    public Arma getArma() {
+        return arma;
     }
 
-    public void setElementoidElemento(Integer elementoidElemento) {
-        Integer oldElementoidElemento = this.elementoidElemento;
-        this.elementoidElemento = elementoidElemento;
-        changeSupport.firePropertyChange("elementoidElemento", oldElementoidElemento, elementoidElemento);
+    public void setArma(Arma arma) {
+        Arma oldArma = this.arma;
+        this.arma = arma;
+        changeSupport.firePropertyChange("arma", oldArma, arma);
     }
 
-    public Integer getArmaidArma() {
-        return armaidArma;
+    public Elemento getElemento() {
+        return elemento;
     }
 
-    public void setArmaidArma(Integer armaidArma) {
-        Integer oldArmaidArma = this.armaidArma;
-        this.armaidArma = armaidArma;
-        changeSupport.firePropertyChange("armaidArma", oldArmaidArma, armaidArma);
+    public void setElemento(Elemento elemento) {
+        Elemento oldElemento = this.elemento;
+        this.elemento = elemento;
+        changeSupport.firePropertyChange("elemento", oldElemento, elemento);
     }
+
+ 
 
     @Override
     public int hashCode() {

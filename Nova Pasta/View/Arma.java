@@ -9,6 +9,8 @@ package View;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -26,12 +29,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "arma", catalog = "personagemrpg", schema = "")
-@NamedQueries({
-    @NamedQuery(name = "Arma.findAll", query = "SELECT a FROM Arma a"),
-    @NamedQuery(name = "Arma.findByIdArma", query = "SELECT a FROM Arma a WHERE a.idArma = :idArma"),
-    @NamedQuery(name = "Arma.findByNomeArma", query = "SELECT a FROM Arma a WHERE a.nomeArma = :nomeArma"),
-    @NamedQuery(name = "Arma.findByLvlArma", query = "SELECT a FROM Arma a WHERE a.lvlArma = :lvlArma"),
-    @NamedQuery(name = "Arma.findByTipoArma", query = "SELECT a FROM Arma a WHERE a.tipoArma = :tipoArma")})
+
 public class Arma implements Serializable {
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -47,7 +45,9 @@ public class Arma implements Serializable {
     private Integer lvlArma;
     @Column(name = "TipoArma")
     private String tipoArma;
-
+    @OneToMany (mappedBy = "arma")
+    private List<Personagem> personagens = new ArrayList<>();
+    
     public Arma() {
     }
 
@@ -95,6 +95,15 @@ public class Arma implements Serializable {
         changeSupport.firePropertyChange("tipoArma", oldTipoArma, tipoArma);
     }
 
+    public List<Personagem> getPersonagens() {
+        return personagens;
+    }
+
+    public void setPersonagens(List<Personagem> personagens) {
+        this.personagens = personagens;
+    }
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -117,7 +126,7 @@ public class Arma implements Serializable {
 
     @Override
     public String toString() {
-        return "View.Arma[ idArma=" + idArma + " ]";
+        return nomeArma;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
