@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d764cdb-c643-424e-b148-2d7e79852711">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5753aaa9-0cc3-403c-8149-9d08b4e234e3">
 	<queryString language="SQL">
 		<![CDATA[SELECT
      arma.`NomeArma` AS nomeArma,
@@ -23,16 +23,16 @@ FROM
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="36e25ede-c49a-40e0-8a98-7aeadadf1ef8"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="a29489b3-d774-42e5-8963-4bbef186cc65"/>
 				<staticText>
-					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="6005663a-7a03-46c7-9cf0-14d8556b3594"/>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="46c83cbd-436f-459b-b065-e3f4cbee8ed8"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[TITLE]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="e65f3376-cc0b-4990-90cf-24aba0acee32"/>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="c12aa096-7cb1-4f4d-b096-e88d8bc26f70"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
@@ -47,24 +47,24 @@ FROM
 	<columnHeader>
 		<band height="21">
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="745ba74f-4e98-41f3-bf8a-12d085c01410"/>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="024478b2-66e1-49ce-a81b-2a7459f18498"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fedf5790-98a7-4fb4-8792-9d49103bc94e"/>
+				<reportElement mode="Opaque" x="0" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="196794e0-5e4f-49e9-85c7-c0464dec6239"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[nomeArma]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="185" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="c67931c5-3da3-4f33-81cf-1d1b4258d81c"/>
+				<reportElement mode="Opaque" x="185" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="25957e76-6404-4c61-8748-36a38319b754"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[lvlArma]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="370" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2923d0fd-ed9c-4ce9-8e9c-2784e2042863"/>
+				<reportElement mode="Opaque" x="370" y="0" width="185" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5c04f6df-23c7-4877-ac5c-03df41b0483a"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -75,24 +75,24 @@ FROM
 	<detail>
 		<band height="20">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="0c62e96e-c4c4-40ae-a8d5-60bffabda04f"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="0b0f339b-6f43-469a-a432-f25013a5318d"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="185" height="20" uuid="b6b6f30e-51ec-405a-9a9b-97786a256c58"/>
+				<reportElement x="0" y="0" width="185" height="20" uuid="943bc188-92fd-4980-93e0-cc7d188961cf"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nomeArma}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="185" y="0" width="185" height="20" uuid="cc7ebc7a-f428-4e39-a17c-666f93bf93d8"/>
+				<reportElement x="185" y="0" width="185" height="20" uuid="ac023dde-2c02-4a2b-9602-0db4bae57007"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lvlArma}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="370" y="0" width="185" height="20" uuid="a26c94ea-e339-4c7d-bbb1-b24cc142cbef"/>
+				<reportElement x="370" y="0" width="185" height="20" uuid="f6975ad1-cf3c-45cb-943f-b7699faf735b"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -106,16 +106,16 @@ FROM
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="73dd5afd-f063-41e3-ab1b-ed7c0cb55cd0"/>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="3f6e9053-f0ed-42f5-9f3a-ec9f1698fbd8"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="377690b4-741d-40e6-84d7-d891f8accd92"/>
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="a14aec1f-83a3-46e8-97c2-8c9a1cdd2a2d"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="33e210d8-c0c2-4745-a625-ffd00f5a533a"/>
+				<reportElement x="0" y="4" width="100" height="13" uuid="ab3ff882-35cb-446f-bc26-640e4853f6f0"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
