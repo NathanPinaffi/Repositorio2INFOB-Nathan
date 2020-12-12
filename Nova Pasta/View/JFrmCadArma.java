@@ -100,8 +100,6 @@ public class JFrmCadArma extends JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), nomeArmaField, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
 
-        nomeArmaField.addActionListener(formListener);
-
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.lvlArma}"), lvlArmaField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         binding.setSourceUnreadableValue("null");
         bindingGroup.addBinding(binding);
@@ -223,9 +221,6 @@ public class JFrmCadArma extends JPanel {
             else if (evt.getSource() == jButton1) {
                 JFrmCadArma.this.jButton1ActionPerformed(evt);
             }
-            else if (evt.getSource() == nomeArmaField) {
-                JFrmCadArma.this.nomeArmaFieldActionPerformed(evt);
-            }
         }
     }// </editor-fold>//GEN-END:initComponents
 
@@ -282,18 +277,14 @@ public class JFrmCadArma extends JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         JRBeanCollectionDataSource dados = new JRBeanCollectionDataSource(list, false);
-        try {
+        try{
             JasperPrint relatorio = JasperFillManager.fillReport("./Relatórios/relatorio1.jasper", null, dados);
             JasperViewer visualizador = new JasperViewer(relatorio, false);
             visualizador.setVisible(true);
-        } catch (JRException ex) {
-            System.out.println("Erro " + ex.getMessage());
+        }catch(JRException ex){
+            System.out.println("Erro" + ex.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void nomeArmaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeArmaFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeArmaFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

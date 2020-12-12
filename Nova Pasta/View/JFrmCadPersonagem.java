@@ -42,9 +42,8 @@ public class JFrmCadPersonagem extends JPanel {
         list = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(query.getResultList());
         queryElemento = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("select a from Elemento a");
         listElemento = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(queryElemento.getResultList());
-        trabalhoLPGitPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("trabalhoLPGitPU").createEntityManager();
-        armaQuery = java.beans.Beans.isDesignTime() ? null : trabalhoLPGitPUEntityManager.createQuery("SELECT a FROM Arma a");
-        armaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : armaQuery.getResultList();
+        armaQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT a FROM Arma a");
+        armaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(armaQuery.getResultList());
         masterScrollPane = new javax.swing.JScrollPane();
         masterTable = new javax.swing.JTable();
         idPersonagemLabel = new javax.swing.JLabel();
@@ -134,6 +133,8 @@ public class JFrmCadPersonagem extends JPanel {
         bindingGroup.addBinding(binding);
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, masterTable, org.jdesktop.beansbinding.ELProperty.create("${selectedElement != null}"), jComboBox1, org.jdesktop.beansbinding.BeanProperty.create("enabled"));
         bindingGroup.addBinding(binding);
+
+        jComboBox1.addActionListener(formListener);
 
         jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, armaList, jComboBox2);
         bindingGroup.addBinding(jComboBoxBinding);
@@ -233,6 +234,9 @@ public class JFrmCadPersonagem extends JPanel {
             else if (evt.getSource() == deleteButton) {
                 JFrmCadPersonagem.this.deleteButtonActionPerformed(evt);
             }
+            else if (evt.getSource() == jComboBox1) {
+                JFrmCadPersonagem.this.jComboBox1ActionPerformed(evt);
+            }
         }
     }// </editor-fold>//GEN-END:initComponents
 
@@ -286,6 +290,10 @@ public class JFrmCadPersonagem extends JPanel {
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.util.List<View.Arma> armaList;
@@ -311,7 +319,6 @@ public class JFrmCadPersonagem extends JPanel {
     private javax.persistence.Query queryElemento;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton saveButton;
-    private javax.persistence.EntityManager trabalhoLPGitPUEntityManager;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
     public static void main(String[] args) {

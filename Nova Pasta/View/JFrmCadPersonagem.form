@@ -51,16 +51,11 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Elemento&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.persistence.EntityManager" name="trabalhoLPGitPUEntityManager">
-      <Properties>
-        <Property name="persistenceUnit" type="java.lang.String" value="trabalhoLPGitPU"/>
-      </Properties>
-    </Component>
     <Component class="javax.persistence.Query" name="armaQuery">
       <Properties>
         <Property name="query" type="java.lang.String" value="SELECT a FROM Arma a"/>
         <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
-          <ComponentRef name="trabalhoLPGitPUEntityManager"/>
+          <ComponentRef name="entityManager"/>
         </Property>
       </Properties>
     </Component>
@@ -69,6 +64,7 @@
         <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
           <ComponentRef name="armaQuery"/>
         </Property>
+        <Property name="observable" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;View.Arma&gt;"/>
@@ -351,6 +347,9 @@
         <BindingProperty name="selectedItem" source="masterTable" sourcePath="${selectedElement.elemento}" target="jComboBox1" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
         <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="jComboBox1" targetPath="enabled" updateStrategy="0" immediately="false"/>
       </BindingProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox2">
       <BindingProperties>
