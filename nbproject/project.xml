@@ -6,6 +6,7 @@
             <name>trabalhoLPGit</name>
             <source-roots>
                 <root id="src.dir"/>
+                <root id="src.Relatórios.dir"/>
             </source-roots>
             <test-roots/>
         </data>
