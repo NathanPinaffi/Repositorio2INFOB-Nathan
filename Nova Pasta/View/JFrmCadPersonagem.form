@@ -87,8 +87,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="newButton" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="deleteButton" linkSize="1" min="-2" max="-2" attributes="0"/>
@@ -98,28 +102,23 @@
                       <Component id="saveButton" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="idPersonagemLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="nomePersonagemLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lvlPersonagemLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="elementoidElementoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="armaidArmaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="idPersonagemField" alignment="0" pref="325" max="32767" attributes="0"/>
-                                  <Component id="nomePersonagemField" alignment="0" pref="325" max="32767" attributes="0"/>
-                                  <Component id="lvlPersonagemField" alignment="0" pref="325" max="32767" attributes="0"/>
-                                  <Component id="jComboBox1" max="32767" attributes="0"/>
-                                  <Component id="jComboBox2" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="masterScrollPane" pref="380" max="32767" attributes="0"/>
+                          <Component id="idPersonagemLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="nomePersonagemLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lvlPersonagemLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="elementoidElementoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="armaidArmaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="idPersonagemField" alignment="0" pref="325" max="32767" attributes="0"/>
+                          <Component id="nomePersonagemField" alignment="0" pref="325" max="32767" attributes="0"/>
+                          <Component id="lvlPersonagemField" alignment="0" pref="325" max="32767" attributes="0"/>
+                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                          <Component id="jComboBox2" alignment="1" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="masterScrollPane" pref="380" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -161,6 +160,7 @@
                   <Component id="refreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="newButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -357,6 +357,14 @@
         <BindingProperty name="selectedItem" source="masterTable" sourcePath="${selectedElement.arma}" target="jComboBox2" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
         <BindingProperty name="enabled" source="masterTable" sourcePath="${selectedElement != null}" target="jComboBox2" targetPath="enabled" updateStrategy="0" immediately="false"/>
       </BindingProperties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Relat&#xf3;rio"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
