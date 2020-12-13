@@ -66,6 +66,7 @@ public class JFrmCadPersonagem extends JPanel {
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         FormListener formListener = new FormListener();
 
@@ -152,15 +153,36 @@ public class JFrmCadPersonagem extends JPanel {
         jButton1.setText("Relatório");
         jButton1.addActionListener(formListener);
 
+        jButton2.setText("Relatório 2");
+        jButton2.addActionListener(formListener);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idPersonagemLabel)
+                                    .addComponent(nomePersonagemLabel)
+                                    .addComponent(lvlPersonagemLabel)
+                                    .addComponent(elementoidElementoLabel)
+                                    .addComponent(armaidArmaLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(idPersonagemField)
+                                    .addComponent(nomePersonagemField)
+                                    .addComponent(lvlPersonagemField)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(masterScrollPane)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(newButton)
@@ -169,22 +191,7 @@ public class JFrmCadPersonagem extends JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idPersonagemLabel)
-                            .addComponent(nomePersonagemLabel)
-                            .addComponent(lvlPersonagemLabel)
-                            .addComponent(elementoidElementoLabel)
-                            .addComponent(armaidArmaLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idPersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                            .addComponent(nomePersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                            .addComponent(lvlPersonagemField, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(masterScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                        .addComponent(saveButton)))
                 .addContainerGap())
         );
 
@@ -221,7 +228,8 @@ public class JFrmCadPersonagem extends JPanel {
                     .addComponent(refreshButton)
                     .addComponent(deleteButton)
                     .addComponent(newButton)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -250,6 +258,9 @@ public class JFrmCadPersonagem extends JPanel {
             }
             else if (evt.getSource() == jButton1) {
                 JFrmCadPersonagem.this.jButton1ActionPerformed(evt);
+            }
+            else if (evt.getSource() == jButton2) {
+                JFrmCadPersonagem.this.jButton2ActionPerformed(evt);
             }
         }
     }// </editor-fold>//GEN-END:initComponents
@@ -320,6 +331,18 @@ public class JFrmCadPersonagem extends JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JRBeanCollectionDataSource dados = new JRBeanCollectionDataSource(list, false);
+        try{
+            JasperPrint relatorio = JasperFillManager.fillReport("./Relatórios/relatorio3.jasper", null, dados);
+            JasperViewer visualizador = new JasperViewer(relatorio, false);
+            visualizador.setVisible(true);
+        }catch(JRException ex){
+            System.out.println("Erro" + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.util.List<View.Arma> armaList;
@@ -331,6 +354,7 @@ public class JFrmCadPersonagem extends JPanel {
     private javax.swing.JTextField idPersonagemField;
     private javax.swing.JLabel idPersonagemLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private java.util.List<View.Personagem> list;
