@@ -401,7 +401,9 @@ public class JFrmCadPersonagem extends JPanel {
             public void run() {
                 JFrame frame = new JFrame();
                 frame.setContentPane(new JFrmCadPersonagem());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                 frame.setLocationRelativeTo(null);
+                frame.setTitle("Formulário de Cadastro de Personagens");
                 frame.pack();
                 frame.setVisible(true);
             }

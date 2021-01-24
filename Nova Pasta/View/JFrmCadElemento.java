@@ -269,7 +269,9 @@ public class JFrmCadElemento extends JPanel {
             public void run() {
                 JFrame frame = new JFrame();
                 frame.setContentPane(new JFrmCadElemento());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                 frame.setLocationRelativeTo(null);
+                frame.setTitle("Formulário de Cadastro de Elementos");
                 frame.pack();
                 frame.setVisible(true);
             }
