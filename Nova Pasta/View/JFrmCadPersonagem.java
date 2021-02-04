@@ -67,6 +67,7 @@ public class JFrmCadPersonagem extends JPanel {
         jComboBox2 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        dateCellRender1 = new render.DateCellRender();
 
         FormListener formListener = new FormListener();
 
@@ -89,6 +90,9 @@ public class JFrmCadPersonagem extends JPanel {
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         masterScrollPane.setViewportView(masterTable);
+        if (masterTable.getColumnModel().getColumnCount() > 0) {
+            masterTable.getColumnModel().getColumn(2).setCellRenderer(dateCellRender1);
+        }
 
         idPersonagemLabel.setText("Id Personagem:");
 
@@ -156,6 +160,8 @@ public class JFrmCadPersonagem extends JPanel {
         jButton2.setText("Relatório 2");
         jButton2.addActionListener(formListener);
 
+        dateCellRender1.setText("dateCellRender1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,7 +197,9 @@ public class JFrmCadPersonagem extends JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveButton)))
+                        .addComponent(saveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateCellRender1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -229,7 +237,8 @@ public class JFrmCadPersonagem extends JPanel {
                     .addComponent(deleteButton)
                     .addComponent(newButton)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(dateCellRender1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -348,6 +357,7 @@ public class JFrmCadPersonagem extends JPanel {
     private java.util.List<View.Arma> armaList;
     private javax.persistence.Query armaQuery;
     private javax.swing.JLabel armaidArmaLabel;
+    private render.DateCellRender dateCellRender1;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel elementoidElementoLabel;
     private javax.persistence.EntityManager entityManager;
