@@ -1,4 +1,6 @@
+Nota Final: 7,3
 
+No repositório não aparece a contribuição realizada pelos os alunos, apenas pelo Nathan. O que aconteceu?
 criou o pacote para armazenar os relatórios com acento no nome: Relatórios
 Não definiu a classe principal do projeto (Splash)
 
