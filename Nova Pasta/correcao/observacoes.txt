@@ -1,0 +1,19 @@
+
+criou o pacote para armazenar os relatórios com acento no nome: Relatórios
+Não definiu a classe principal do projeto (Splash)
+
+Relatório Wizard: Não definiu o título do formulário.
+Relatório blank: ok
+Relatório multiplas tabelas: Não alterou o título do relatório e os rótulos dos campus.
+Relatório com parâmetros: Não foi realizado
+
+
+Formulário.
+Todos estavam descentralizados. Alguns abrindo no canto superior e outros no canto inferior.
+Não foi dada atenção ao layout dos formulários, o layout apresentado é basicamente aquele criado pelo Netbeans.
+
+Render ok
+Login e splash ok
+Não produziram o vídeo
+
+
